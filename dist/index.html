@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -17,9 +17,38 @@
       content="An efficient and minimal open-source collaborative text editor based on the operational transformation algorithm."
     />
     <script type="module" crossorigin src="./assets/index-Dby0IIOC.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-Dze2KcsE.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-Dze2KcsE.css" />
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      (function () {
+        // 定义一个标识符用于存储定时器ID
+        let intervalId;
+
+        // 定义尝试捕获元素的函数
+        function tryCaptureElement() {
+          const element = document.querySelector(
+            "div.chakra-container.css-g48yx8"
+          );
+          if (element) {
+            // 如果找到了元素，则设置宽度并停止定时器
+            element.style.width = "14em";
+            console.log("已找到指定的 div 元素，并设置了宽度");
+            clearInterval(intervalId); // 停止定时器
+          } else {
+            console.log("未找到指定的 div 元素");
+          }
+        }
+
+        // 设置定时器，每0.2秒（即200毫秒）调用一次 tryCaptureElement 函数
+        intervalId = setInterval(tryCaptureElement, 200);
+
+        // 确保在页面加载完成后开始尝试捕获元素
+        window.addEventListener("load", function () {
+          tryCaptureElement(); // 页面加载完成后立即尝试一次
+        });
+      })();
+    </script>
   </body>
 </html>
