@@ -46,7 +46,7 @@ docker run -d \
 --log-opt max-size=1m \
 --log-opt max-file=3 \
 -p 端口:3030 \
-wr.cn-north-4.myhuaweicloud.com/firfe/rustpad:2025.05.06
+swr.cn-north-4.myhuaweicloud.com/firfe/rustpad:2025.05.06
 ``
 ### compose 文件部署 👍推荐
 
@@ -55,7 +55,7 @@ wr.cn-north-4.myhuaweicloud.com/firfe/rustpad:2025.05.06
 services:
   rustpad:
     container_name: rustpad
-    image: wr.cn-north-4.myhuaweicloud.com/firfe/rustpad:2025.05.06
+    image: swr.cn-north-4.myhuaweicloud.com/firfe/rustpad:2025.05.06
     network_mode: bridge
     restart: always
     logging:
