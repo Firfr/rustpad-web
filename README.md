@@ -4,14 +4,22 @@
 
 修改的不是源码，我在本地按照原项目的Dockerfile文件构建失败了，所以修改的是Docker镜像中复制出来的文件。
 
-当前修改仅适用2025.05.06之前的镜像
+当前修改仅适用2025.08.28之前的镜像
 
 首先感谢原作者的开源。[原项目地址](https://github.com/ekzhang/rustpad)
 
-精简语言，只剩 纯文本 和 markdown。  
-具体修改了那些内容，请参考[翻译修改说明](./翻译修改说明.md)。
-
-只做了汉化和简单修改，有问题，请到原作者仓库处反馈。
+只做了汉化和简单修改，有问题，请到原作者仓库处反馈。  
+具体修改了那些内容，请参考[翻译说明](./翻译说明.md)和[修改说明](./修改说明.md)。
+- 修改内容
+  - 所有远程引用改为本地引用。
+  - 精简语言，只保留 
+    - `纯文本` `markdown` `yaml`
+    - `typescript` `python` `rust`
+    - `sql` `scss` `shell` `powershell`
+  - 修改右边栏宽度为14em。
+  - 增加点击左下角文字`Rustpad`点击事件，点击后切换显示/隐藏左侧块。
+  - 使用兼容写入剪切板方法，http可用
+  - 添加汉化仓库链接。
 
 有需要帮忙部署这个项目的朋友,一杯奶茶,即可程远程帮你部署，需要可联系。  
 微信号 `E-0_0-`  
@@ -28,7 +36,7 @@
 容器内部端口 3030
 
 ```bash
-docker pull swr.cn-north-4.myhuaweicloud.com/firfe/rustpad:2025.05.06
+docker pull swr.cn-north-4.myhuaweicloud.com/firfe/rustpad:2025.08.28
 ```
 ## 部署
 
@@ -39,33 +47,37 @@ docker pull swr.cn-north-4.myhuaweicloud.com/firfe/rustpad:2025.05.06
 
 ### docker run 命令部署
 
-``bash
+```bash
 docker run -d \
 --name rustpad \
 --network bridge \
 --restart always \
+--cpus 1 --memory 512m \
 --log-opt max-size=1m \
 --log-opt max-file=3 \
--p 端口:3030 \
-swr.cn-north-4.myhuaweicloud.com/firfe/rustpad:2025.05.06
-``
+-p 3030:3030 \
+swr.cn-north-4.myhuaweicloud.com/firfe/rustpad:2025.08.28
+```
 ### compose 文件部署 👍推荐
 
-``yaml
+```yaml
 #version: '3.9'
+name: rustpad
 services:
   rustpad:
     container_name: rustpad
-    image: swr.cn-north-4.myhuaweicloud.com/firfe/rustpad:2025.05.06
+    image: swr.cn-north-4.myhuaweicloud.com/firfe/rustpad:2025.08.28
     network_mode: bridge
     restart: always
+    cpus: 1
+    mem_limit: 512m
     logging:
       options:
         max-size: 1m
         max-file: '3'
     ports:
-      - 端口:3030
-``
+      - 3030:3030
+```
 
 ## 效果截图
 

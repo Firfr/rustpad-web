@@ -1,8 +1,10 @@
-FROM ekzhang/rustpad:2025.05.06
+# 原版镜像发布时间 2025年2月2日 Feb 2, 2025
+
+FROM ekzhang/rustpad:latest
+
 COPY dist dist
-USER 0:0
-EXPOSE 3030
 
 #CMD [ "./rustpad-server" ]
 
-# docker build -t firfe/rustpad:2025.05.06 .
+# chmod -R 777 dist
+# docker build -t firfe/rustpad:2025.08.28 .

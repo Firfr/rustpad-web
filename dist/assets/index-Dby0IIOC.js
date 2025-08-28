@@ -31797,8 +31797,8 @@ impl Rustpad {
     });
   }
   const Pk = [
-    "纯文本",
-    "markdown",
+    "纯文本", "markdown", "yaml","typescript", "python",
+    "rust", "sql", "scss", "shell", "powershell",
   ];
   function JN({
     documentId: e,
@@ -31816,10 +31816,11 @@ impl Rustpad {
     const v = ak(),
       b = `${window.location.origin}/#${e}`;
     async function k() {
-      await navigator.clipboard.writeText(b),
+      // await navigator.clipboard.writeText(b),
+      await writeToClipboard(b),
         v({
-          title: "Copied!",
-          description: "Link copied to clipboard",
+          title: "已复制！",
+          description: "链接已复制到剪贴板",
           status: "success",
           duration: 2e3,
           isClosable: !0,
@@ -31881,7 +31882,7 @@ impl Rustpad {
                 _hover: { bg: n ? "#575759" : "gray.200" },
                 bgColor: n ? "#575759" : "gray.200",
                 color: n ? "white" : "inherit",
-                children: "Copy",
+                children: "复制",
               }),
             }),
           ],
@@ -31936,6 +31937,23 @@ impl Rustpad {
             }),
             " ",
             "请查详情。",
+          ],
+        }),
+        R.jsxs(en, {
+          fontSize: "sm",
+          mb: 1.5,
+          children: [
+            "汉化和远程引用本地化",
+            " ",
+            R.jsx(rw, {
+              color: "blue.600",
+              fontWeight: "semibold",
+              href: "https://github.com/Firfr/rustpad-web",
+              isExternal: !0,
+              children: "GitHub 仓库",
+            }),
+            " ",
+            "。",
           ],
         }),
         R.jsx(ii, {
@@ -32900,7 +32918,7 @@ impl Rustpad {
     return (t.protocol = t.protocol == "https:" ? "wss:" : "ws:"), t.href;
   }
   function G$() {
-    return "Anonymous " + Rk[Math.floor(Math.random() * Rk.length)];
+    return "用户 " + Rk[Math.floor(Math.random() * Rk.length)];
   }
   function Lk() {
     return Math.floor(Math.random() * 360);
@@ -32931,8 +32949,8 @@ impl Rustpad {
             onDesynchronized: () => {
               a("desynchronized"),
                 e({
-                  title: "Desynchronized with server",
-                  description: "Please save your work and refresh the page.",
+                  title: "与服务器同步出错(有大概率输入法问题)",
+                  description: "请保存当前内容并刷新页面。(可使用微软拼音)",
                   status: "error",
                   duration: null,
                 });
